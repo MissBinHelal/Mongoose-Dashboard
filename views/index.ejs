@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Mongoose Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<form >
+        <h1>all animals</h1>
+        <% for (var x in arr) { %>
+            <h4><%= arr[x].id %></h4> <h3><%= arr[x].name %> </h3>
+            <hr>
+        <% } %>
+      </div>
+  </form>
+  <a href="/mongooses/new"><button type="submit" class="btn btn-primary">Add</button></a>
+
+  <a href="/mongooses/<%= arr.id %>"><button type="submit" class="btn btn-primary">d</button></a>
+
+
+</body>
+</html>
