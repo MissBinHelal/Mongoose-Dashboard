@@ -6,20 +6,30 @@
     <title> Mongoose Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+form{
+   display: inline-block; 
+   text-align: center;
+}
+h4{
+    color: blue;
+
+}
+</style>
 </head>
+
 <body>
 <h1>here the animal information </h1>
-    <% for ( var x in arr) { %>
-    <% arr[x].id %>
-    <% arr[x].name %>
-    <%}%>
+
+<h3>name</h3>    <h4><%=arr.name %></h4>
+ <h3>color</h3>  <h4><%= arr.color %></h4> 
+ <hr>
 <form action="/destroy/<%= arr.id %>" method="POST">
     <button type="submit" class="btn btn-primary">Delete</button>
 </form>
-<form action="/edit/<%= arr.id %>" method="POST">
-    <button type="submit" class="btn btn-primary">Edit</button>
+<form action="/edit">
+<a href="/views/edit.ejs"><button type="submit" class="btn btn-primary">Edit</button></a>
 </form>
 <a href="/views/index.ejs"><button type="submit" class="btn btn-primary">Go to homepage</button></a>
-
 </body>
 </html>

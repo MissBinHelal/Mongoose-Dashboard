@@ -12,15 +12,13 @@
 <form >
         <h1>all animals</h1>
         <% for (var x in arr) { %>
-            <h4><%= arr[x].id %></h4> <h3><%= arr[x].name %> </h3>
+            <h4><%= arr[x].color %></h4> <h3><%= arr[x].name %> </h3>
+             <a href="/mongooses/<%= arr[x].id %>" >display </a>
             <hr>
         <% } %>
       </div>
   </form>
   <a href="/mongooses/new"><button type="submit" class="btn btn-primary">Add</button></a>
-
-  <a href="/mongooses/<%= arr.id %>"><button type="submit" class="btn btn-primary">d</button></a>
-
 
 </body>
 </html>

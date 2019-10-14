@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 
 //model set up
 const animalSchema = new mongoose.Schema({
-  id:Number,
-  name: String
+  name: String,
+  color:String
 })
 
 // create an object to that contains methods for mongoose to interface with MongoDB
@@ -29,7 +29,7 @@ app.get('/mongooses/new', function(req, res) {
     res.render('add');
 })
 app.post('/add', (req, res) => {
-  const record = new Animal({id : req.body.id, name : req.body.name}); 
+  const record = new Animal({id :req.body.id, name : req.body.name, color: req.body.color}); 
   console.log(req.body.name);  
   record.save(function (err) {
     if (err) {
@@ -45,26 +45,36 @@ app.post('/add', (req, res) => {
   });
 });
 app.get('/mongooses/:id', (req, res) => {
-  arr = Animal.findOne({id:req.parm.id}, function (err, animal) {
+  arr = Animal.findOne({_id:req.params.id}, function (err, animal) {
+      console.log(arr);
+      console.log('hi');
     res.render('display', { arr: animal });
   })
 
 })
 app.post('/destroy/:id', (req, res) => {
-    arr = Animal.remove({id:req.parm.id}, function (err, animal) {
-      res.render('/');
+    Animal.remove({_id:req.params.id}, function (err, animal) {
+      res.redirect('/');
     })
   
   })
+  app.get('mongoose/edit/:id', (req, res) => {
+    arr = Animal.findOne({_id:req.params.id}, function (err, animal) {
+        console.log(arr);
+        console.log('hi');
+      res.render('edit', { arr: animal });
+    })
+  })
   app.post('/edit/:id', (req, res) => {
-    arr = Animal.update({id:req.body.id},{name:req.body.name},function (err, animal) {
+    arr = Animal.update({_id:req.params.id},{name:req.body.name},{color:req.body.color},function (err, animal) {
         if (err) {
             console.log('something went wrong');
-            res.render('/mongooses/edit/:id')
+            res.redirect('/mongooses/${req.params.id}')
           }
           else {
-            console.log('successfully added a quote!');
-            res.redirect('/');
+            console.log('successfully edtied  the animal page!');
+            res.redirect('/mongooses/${req.params.id}')
+
           }
         });
       });
